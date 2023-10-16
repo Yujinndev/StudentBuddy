@@ -1,22 +1,29 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';  
+import { useFonts } from 'expo-font'; 
+import ContainerNavigation from './src/navigation/ContainerNavigation'
+import * as SplashScreen from 'expo-splash-screen';
 
-export default function App() {
+export default function App() { 
+  const [fontsLoaded] = useFonts({
+    "Montserrat": require("./src/assets/fonts/Montserrat-Regular.ttf"),
+  });
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Student Buddy!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ContainerNavigation/>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-  
