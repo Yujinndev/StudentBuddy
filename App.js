@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react';  
+import React, { useEffect, useState } from 'react';  
 import { useFonts } from 'expo-font'; 
-import ContainerNavigation from './src/navigation/ContainerNavigation'
 import * as SplashScreen from 'expo-splash-screen';
+import AuthNavigation from './src/navigation/AuthNavigation';
+import GuestNavigation from './src/navigation/GuestNavigation';
 
 export default function App() { 
   const [fontsLoaded] = useFonts({
     "Montserrat": require("./src/assets/fonts/Montserrat-Regular.ttf"),
+    "Inter": require("./src/assets/fonts/Inter.ttf"),
+    "Lora": require("./src/assets/fonts/Lora.ttf"),
+    "Poppins": require("./src/assets/fonts/Poppins-Bold.ttf"),
     'MaterialIcons': require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf'),
   });
+
+  const [isLoggedin, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     async function prepare() {
@@ -23,8 +29,7 @@ export default function App() {
   }
 
   return (
-    <>
-      <ContainerNavigation/>
-    </>
+    isLoggedin ? <AuthNavigation /> : <GuestNavigation />
   );
+  
 }
