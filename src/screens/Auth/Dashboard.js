@@ -4,7 +4,7 @@ import { SafeAreaView, View, Text } from 'react-native';
 import { AppBar, IconButton } from "@react-native-material/core";
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Styles from '../theme/Styles';
+import Styles from '../../theme/Styles';
 
 export default function Dashboard() {
   return (
