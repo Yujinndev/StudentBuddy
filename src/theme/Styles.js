@@ -54,8 +54,12 @@ export default StyleSheet.create({
         backgroundColor: Colors.white,
     },
     
-    backgroundImg: {
+    welcomeImg: {
         height: (Metrics.screenHeight - 520)
+    },
+
+    authImg: {
+        height: (Metrics.screenHeight - 600),
     },
 
     box: {

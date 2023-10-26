@@ -1,7 +1,6 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 /* SCREENS */
 import Welcome from '../screens/Guest/Welcome';
@@ -9,13 +8,14 @@ import Login from '../screens/Guest/Login';
 import Register from '../screens/Guest/Register';
 
 export default function GuestNavigation() {
-    const Stack = createStackNavigator();
+    const Stack = createNativeStackNavigator();
 
     return (
         <NavigationContainer>
             <Stack.Navigator
                 initialRouteName="Welcome"
                 screenOptions={{
+                    headerShown: false,
                     headerMode: 'screen',
                     headerTintColor: '#FAF9F6',
                     headerStyle: { backgroundColor: '#FAF9F6' },
