@@ -18,7 +18,7 @@ export default function GuestNavigation() {
                     headerShown: false,
                     headerMode: 'screen',
                     headerTintColor: '#FAF9F6',
-                    headerStyle: { backgroundColor: '#FAF9F6' },
+                    headerStyle: { backgroundColor: '#FAF9F6', },
                 }}
             >
                 <Stack.Screen name="Welcome" component={Welcome} />

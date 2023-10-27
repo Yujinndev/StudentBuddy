@@ -5,21 +5,45 @@ import Fonts from './Fonts';
 
 export default StyleSheet.create({
 
+    textLight: {
+        color: Colors.white
+    },
+
+    textDark: {
+        color: Colors.black
+    },
+
     heading: {
-        color: Colors.white,
         fontSize: Fonts.font32,
         fontFamily: 'Poppins',
     },
 
     subheading: {
-        color: Colors.white,
         fontSize: Fonts.font20,
+        fontFamily: 'Poppins',
     },
 
     paragraph: {
-        color: Colors.white,
         fontSize: Fonts.font16,
         fontFamily: 'Lora',
+    },
+
+    normalText: {
+        fontSize: Fonts.font12,
+        fontFamily: 'Lora',
+    },
+
+    center: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    divider: {
+        width: 130,
+        height: 1,
+        marginHorizontal: 5,
+        backgroundColor: Colors.white
     },
 
     btn: {
@@ -30,12 +54,11 @@ export default StyleSheet.create({
         flexDirection: 'row',
         gap: 10,
         padding: 10,
-        width: 150,
-        borderRadius: 10
+        width: '100%',
+        borderRadius: 5,
     },
 
     btnTitle: {
-        color: Colors.black,
         fontSize: Fonts.font14,
         fontFamily: 'Inter',
         fontWeight: '900'
@@ -55,7 +78,7 @@ export default StyleSheet.create({
     },
     
     welcomeImg: {
-        height: (Metrics.screenHeight - 520)
+        height: (Metrics.screenHeight - 500)
     },
 
     authImg: {
@@ -63,18 +86,33 @@ export default StyleSheet.create({
     },
 
     box: {
-        flex: 1,
-        width: '100%',
+        height: Metrics.screenHeight,
+        width: Metrics.screenWidth,
         backgroundColor: Colors.primary,
-        padding: 40,
+        paddingHorizontal: 50,
+        paddingVertical: 40,
         borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
     },
 
     pagination: {
         flexDirection: 'row', 
         gap: 5, 
         position: 'absolute', 
-        top: (Metrics.screenHeight - 100)
-    }
+        top: (Metrics.screenHeight - 30)
+    },
+
+    form: {
+        marginTop: 20,
+    },
+
+    formControl: {
+        marginVertical: 8,
+        padding: 10,
+        borderColor: Colors.white, 
+        borderWidth: 1.5,
+        borderRadius: 5,
+        fontWeight: Fonts.semi
+    },
 
 });

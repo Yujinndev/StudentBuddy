@@ -3,6 +3,7 @@
     "name": "StudentBuddy",
     "slug": "StudentBuddy",
     "version": "1.0.0",
+    "android":{"softwareKeyboardLayoutMode": "pan"},
     "assetBundlePatterns": [
       "**/*"
     ]
