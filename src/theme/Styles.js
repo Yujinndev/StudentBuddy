@@ -46,12 +46,12 @@ export default StyleSheet.create({
     },
 
     btn: {
-        marginVertical: 10,
+        marginVertical: 5,
         backgroundColor: Colors.white,
         flexDirection: 'row',
-        gap: 10,
         padding: 10,
         width: '100%',
+        gap: 10, 
         borderRadius: 5,
     },
 
@@ -96,7 +96,7 @@ export default StyleSheet.create({
         flexDirection: 'row', 
         gap: 5, 
         position: 'absolute', 
-        top: (Metrics.screenHeight - 10)
+        top: Metrics.screenHeight
     },
 
     form: {
@@ -106,11 +106,13 @@ export default StyleSheet.create({
     formControl: {
         marginVertical: 8,
         padding: 10,
+        width: '100%',
         paddingLeft: 20,
         borderColor: Colors.white, 
         borderWidth: 1.5,
         borderRadius: 5,
-        fontWeight: Fonts.semi
+        fontWeight: Fonts.semi,
+        color: '#FAF9F6'
     },
 
 });

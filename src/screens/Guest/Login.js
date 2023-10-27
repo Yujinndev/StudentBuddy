@@ -1,7 +1,8 @@
 import React from 'react';
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Animated from 'react-native-reanimated';
 
 /* COMPONENTS */
 import Form from '../../components/template/Form';
@@ -22,12 +23,18 @@ export default function Login() {
   return (
     <SafeAreaView style={ Styles.center }>
       <StatusBar style="auto" />
-        <View style={{ height: 150 }}/>
+        <Animated.View style={{ height: 350 }} sharedTransitionTag="img">
+          <Image 
+            style={ Styles.welcomeImg }
+            source={require('../../assets/images/bg.png')}
+            resizeMode="contain"
+          />
+        </Animated.View>
         <View 
           style={[ Styles.box, { borderTopRightRadius: 0 } ]}
         >
           <Text style={[ Styles.heading, Styles.textLight ]}>Login</Text>
-          <Text style={[ Styles.paragraph, Styles.textLight ]}>Enter your account details ...</Text>
+          <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: -10 } ]}>Enter your account details ...</Text>
 
           <View style={ Styles.form }>
             <Form inputFields={ inputFields } onSubmit={ 'Login' } />

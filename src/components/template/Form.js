@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, KeyboardAvoidingView, Platform } from 'react-native';
-import TextInput from '../atom/TextInput';
+import { View, KeyboardAvoidingView, Platform, ToastAndroid } from 'react-native';
+import TextInputAtom from '../atom/TextInputAtom';
 import ButtonAtom from '../atom/ButtonAtom';
 import Styles from '../../theme/Styles';
 
@@ -39,7 +39,7 @@ export default function Form({ inputFields, onSubmit }) {
 
         // If there are errors, update the state to highlight the empty fields
         if (hasError) {
-            console.log('Cant process, all inputs are required');
+            ToastAndroid.show('Fill in all inputs', ToastAndroid.SHORT);
             setErrorFields(newErrorFields);
         } else {
             setErrorFields({}); // Clear any previous error messages
@@ -60,13 +60,13 @@ export default function Form({ inputFields, onSubmit }) {
         >
             <View>
                 {inputFields.map((field, index) => (
-                    <TextInput
-                        styling={[ Styles.formControl, Styles.textLight, { borderColor: errorFields[field.id] ? '#710C04' : '#FAF9F6' } ]}
-                        key={index}
-                        placeholder={field.placeholder}
-                        value={formValues[field.id]}
+                    <TextInputAtom
+                        styling={[ Styles.formControl , { borderColor: errorFields[field.id] ? '#710C04' : '#FAF9F6', color: errorFields[field.id] ? '#710C04' : '#FAF9F6' } ]}
+                        key={ index }
+                        placeholder={ field.placeholder }
+                        value={ formValues[field.id] }
                         onChangeText={(text) => handleFieldChange(field.id, text)}
-                        secureTextEntry={field.secureTextEntry || false}
+                        secureTextEntry={ field.secureTextEntry || false }
                     />
                 ))}
 

@@ -17,21 +17,23 @@ export default function Register() {
 
   const inputFields = [
     { id: 'email', placeholder: 'Email', value: '', secureTextEntry: false },
+    { id: 'firstName', placeholder: 'First Name', value: '', secureTextEntry: false },
+    { id: 'lastName', placeholder: 'Last Name', value: '', secureTextEntry: false },
     { id: 'school', placeholder: 'School/Organization', value: '', secureTextEntry: false },
-    { id: 'fullName', placeholder: 'Full Name', value: '', secureTextEntry: false },
     { id: 'password', placeholder: 'Password', value: '', secureTextEntry: true },
   ];
 
   return (
     <SafeAreaView style={ Styles.center }>
       <StatusBar style="auto" />
-      <View style={{ height: 150 }}/>
-      <Animated.View 
+      <Animated.View style={{ height: 150 }} sharedTransitionTag="img" />
+      
+      <Animated.View
         style={[ Styles.box, { borderTopRightRadius: 0 } ]} 
         sharedTransitionTag="tag"
       >
         <Text sharedTransitionTag="form" style={[ Styles.heading, Styles.textLight ]}>Register</Text>
-        <Text style={[ Styles.paragraph, Styles.textLight ]}>Create your account ...</Text>
+        <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: -10 } ]}>Create your account ...</Text>
 
         <View style={ Styles.form }>
           <Form inputFields={ inputFields } onSubmit={ 'Register' } />
