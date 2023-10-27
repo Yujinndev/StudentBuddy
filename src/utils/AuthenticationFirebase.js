@@ -3,19 +3,32 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
 const auth = getAuth(FIREBASE_APP);
+const db = getFirestore(FIREBASE_APP);
 
-// TODO parameters for creating email
-export const signIn = () => {
+export const signIn = (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
-  if (!isValidEmail("email.example.com")) {
+  if (!isValidEmail(email)) {
     throw "Wrong email format";
   }
-  createUserWithEmailAndPassword(auth, "email@example.com", "testing");
-  // TODO save user credentials to firestore
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const docRef = setDoc(doc(db, user.uid), {
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        school: school,
+      });
+      return user;
+    })
+    .catch((error) => {
+      return error;
+    });
 };
 
 isValidEmail = (email) => {
