@@ -8,12 +8,14 @@ import { FIREBASE_APP } from "../../config/firebase_config";
 
 const auth = getAuth(FIREBASE_APP);
 
+// TODO parameters for creating email
 export const signIn = () => {
   // verify if the user's email and password is valid
   if (!isValidEmail("email.example.com")) {
     throw "Wrong email format";
   }
   createUserWithEmailAndPassword(auth, "email@example.com", "testing");
+  // TODO save user credentials to firestore
 };
 
 isValidEmail = (email) => {
