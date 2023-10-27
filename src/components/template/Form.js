@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import TextInput from '../atom/TextInput';
 import ButtonAtom from '../atom/ButtonAtom';
 import Styles from '../../theme/Styles';
@@ -7,14 +7,13 @@ import Styles from '../../theme/Styles';
 export default function Form({ inputFields, onSubmit }) {
     const [formValues, setFormValues] = useState(
         inputFields.reduce((acc, field) => {
-        acc[field.id] = field.value || '';
-        return acc;
+            acc[field.id] = field.value || '';
+
+            return acc;
         }, {})
     );
 
-    const [errorFields, setErrorFields] = useState({}); // State to track input errors
-    let hasError = false;
-    const newErrorFields = {};
+    const [errorFields, setErrorFields] = useState({});
 
     const handleFieldChange = (fieldId, text) => {
         setFormValues({ ...formValues, [fieldId]: text });
@@ -27,6 +26,9 @@ export default function Form({ inputFields, onSubmit }) {
     };
 
     const handleFormSubmit = () => {
+        let hasError = false;
+        const newErrorFields = {};
+        
         // Check for empty input fields and mark them as errors
         inputFields.forEach((field) => {
             if (!formValues[field.id].trim()) {
@@ -37,8 +39,8 @@ export default function Form({ inputFields, onSubmit }) {
 
         // If there are errors, update the state to highlight the empty fields
         if (hasError) {
-            setErrorFields(newErrorFields);
             console.log('Cant process, all inputs are required');
+            setErrorFields(newErrorFields);
         } else {
             setErrorFields({}); // Clear any previous error messages
 
@@ -54,7 +56,7 @@ export default function Form({ inputFields, onSubmit }) {
 
     return (
         <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <View>
                 {inputFields.map((field, index) => (

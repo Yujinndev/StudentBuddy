@@ -1,13 +1,15 @@
 import React from 'react';
 import { StatusBar } from "expo-status-bar";
-import { Image, SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Animated from 'react-native-reanimated';
+
+/* COMPONENTS */
+import Form from '../../components/template/Form';
+import Pagination from '../../components/atom/Pagination';
+import ButtonAtom from '../../components/atom/ButtonAtom';
+import DividerLine from '../../components/atom/DividerLine';
 
 import Styles from '../../theme/Styles';
-import Pagination from '../../components/atom/Pagination';
-import Form from '../../components/template/Form';
 
 export default function Login() {
   const navigation = useNavigation();
@@ -18,11 +20,11 @@ export default function Login() {
   ];
 
   return (
-    <SafeAreaView style={{ alignItems: 'center', justifyContent: 'center' }}>
+    <SafeAreaView style={ Styles.center }>
       <StatusBar style="auto" />
         <View style={{ height: 150 }}/>
-        <Animated.View 
-          style={[ Styles.box, { borderTopLeftRadius: 0 } ]}
+        <View 
+          style={[ Styles.box, { borderTopRightRadius: 0 } ]}
         >
           <Text style={[ Styles.heading, Styles.textLight ]}>Login</Text>
           <Text style={[ Styles.paragraph, Styles.textLight ]}>Enter your account details ...</Text>
@@ -31,18 +33,17 @@ export default function Login() {
             <Form inputFields={ inputFields } onSubmit={ 'Login' } />
           </View>
           
-          <View style={ Styles.center }>
-            <View style={ Styles.divider }></View>
-            <Text style={ Styles.textLight }> OR </Text>
-            <View style={ Styles.divider }></View>
-          </View>
+          <DividerLine />
+
+          <ButtonAtom styling='left' title='Login with Google' icon='google' />
+          <ButtonAtom styling='left' title='Login with Facebook' icon='facebook-square' />
 
           <TouchableOpacity onPress={() => navigation.push('Register')}>
-            <View style={ Styles.center }>
-              <Text style={ Styles.normalText }>No account yet? Create first!</Text>
+            <View style={[ Styles.center, { marginTop: 20 } ]}>
+              <Text style={[ Styles.normalText, Styles.textLight, { textDecorationLine: 'underline' } ]}>No account yet? Create first!</Text>
             </View>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
         
         <Pagination viewCount={2} currentPage="2nd" />
     </SafeAreaView>

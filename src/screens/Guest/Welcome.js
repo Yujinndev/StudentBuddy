@@ -30,9 +30,9 @@ export default function Welcome() {
           <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: 10 }]}>We make it easy to take down your Notes & Lessons, manage your academic tasks, and financial Funds. Interact with your friends and your school buddies!</Text>
 
           <TouchableOpacity onPress={() => navigation.push('Register')}>
-            <View style={[ Styles.btn, { width: 140 }]}>
+            <View style={[ Styles.btn, Styles.center, { width: 150 }]}>
               <Text style={ Styles.btnTitle }>Get Started</Text>
-              <MaterialIcons name='arrow-right-alt' size={24} color='black' />
+              <MaterialIcons name='arrow-right-alt' size={20} color='black' />
             </View>
           </TouchableOpacity>
         </Animated.View>
