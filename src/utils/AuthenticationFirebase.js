@@ -2,6 +2,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 
@@ -9,6 +11,7 @@ import { FIREBASE_APP } from "../../config/firebase_config";
 
 const auth = getAuth(FIREBASE_APP);
 const db = getFirestore(FIREBASE_APP);
+const googleProvider = new GoogleAuthProvider();
 
 export const signIn = (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
@@ -47,6 +50,27 @@ export const logInWithEmailAndPassword = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       return userCredential;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      const user = result.user;
+      // save the user's credentials to firestore
+      const docRef = setDoc(doc(db, user.uid), {
+        email: user.email,
+        firstname: user.displayName,
+        lastname: "",
+        school: "",
+      });
+      return {
+        credential: GoogleAuthProvider.credentialFromResult(result),
+        user: user,
+      };
     })
     .catch((error) => {
       return error;
