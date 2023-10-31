@@ -4,6 +4,9 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 
@@ -12,6 +15,7 @@ import { FIREBASE_APP } from "../../config/firebase_config";
 const auth = getAuth(FIREBASE_APP);
 const db = getFirestore(FIREBASE_APP);
 const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 export const signIn = (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
@@ -69,6 +73,32 @@ export const signInWithGoogle = () => {
       });
       return {
         credential: GoogleAuthProvider.credentialFromResult(result),
+        user: user,
+      };
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const signInWithFacebook = () => {
+  signInWithRedirect(auth, facebookProvider).catch((error) => {
+    return error;
+  });
+};
+
+export const getUserCredentialFacebook = () => {
+  getRedirectResult(auth)
+    .then((result) => {
+      const user = result.user;
+      const docRef = setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        firstname: user.displayName,
+        lastname: "",
+        school: "",
+      });
+      return {
+        credential: FacebookAuthProvider.credentialFromResult(result),
         user: user,
       };
     })
