@@ -10,6 +10,7 @@ export default {
     font20: Metrics.screenWidth * (20 / 365),
     font24: Metrics.screenWidth * (24 / 365),
     font28: Metrics.screenWidth * (28 / 365),
+    font30: Metrics.screenWidth * (30 / 365),
     font32: Metrics.screenWidth * (32 / 365),
     font40: Metrics.screenWidth * (40 / 365),
     full: '900',

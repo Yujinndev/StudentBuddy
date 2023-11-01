@@ -13,8 +13,12 @@ export default StyleSheet.create({
         color: Colors.black
     },
 
+    textGray: {
+        color: Colors.gray
+    },
+
     heading: {
-        fontSize: Fonts.font32,
+        fontSize: Fonts.font28,
         fontFamily: 'Poppins',
     },
 

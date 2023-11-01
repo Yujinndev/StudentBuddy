@@ -2,9 +2,10 @@ import React from 'react';
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, View, Text } from 'react-native';
 import { AppBar, IconButton } from "@react-native-material/core";
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Styles from '../../theme/Styles';
+import Colors from '../../theme/Colors';
 
 export default function Funds() {
     return (
@@ -12,12 +13,15 @@ export default function Funds() {
             <StatusBar style="auto" />
             <AppBar 
                 color="white"
-                title="Funds" 
+                title="Expenses" 
+                contentContainerStyle={[{ marginTop: 20 }, Styles.center ]}
+                titleStyle= {[ Styles.heading, Styles.textGray ]}
                 style={ Styles.appbar }
-                // leading={
-                //   <IconButton icon={ <MaterialIcons name="arrow-left" size={18} color="#300" /> } />
-                // }
+                trailing={
+                    <IconButton icon={ <FontAwesome name="user-circle-o" size={25} color={Colors.gray} /> } />
+                }
             />
+
 
             <View style={ Styles.container }>
                 
