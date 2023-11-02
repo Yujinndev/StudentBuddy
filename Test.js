@@ -7,6 +7,7 @@ import {
   editNote,
   getNotes,
 } from "./src/utils/NotesFirebase";
+import { isSignedIn, signIn } from "./src/utils/AuthenticationFirebase";
 
 export default function Test() {
   return (
@@ -15,7 +16,27 @@ export default function Test() {
         <Button
           title="Test Create"
           onPress={() => {
-            editNote();
+            try {
+              const res = signIn(
+                "Example@example.com",
+                "any",
+                "any",
+                "any",
+                "any"
+              );
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+        />
+        <Button
+          title="Test sign"
+          onPress={() => {
+            try {
+              isSignedIn();
+            } catch (error) {
+              console.log(error);
+            }
           }}
         />
       </SafeAreaView>

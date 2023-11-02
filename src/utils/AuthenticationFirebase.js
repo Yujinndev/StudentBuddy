@@ -2,40 +2,44 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-  FacebookAuthProvider,
+  getReactNativePersistence,
+  initializeAuth,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { ReactNativeAsyncStorage } from "@react-native-async-storage/async-storage";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
-const auth = getAuth(FIREBASE_APP);
+const auth = initializeAuth(FIREBASE_APP, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+});
 const db = getFirestore(FIREBASE_APP);
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
 
-export const signIn = (email, firstname, lastname, school, password) => {
+export const signIn = async (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
   if (!isValidEmail(email)) {
     throw "Wrong email format";
   }
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const docRef = setDoc(doc(db, user.uid), {
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        school: school,
-      });
-      return user;
-    })
-    .catch((error) => {
-      return error;
+  console.log("wtf");
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    const docRef = setDoc(doc(db, user.uid), {
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      school: school,
     });
+    console.log("wtf2");
+    return user;
+  } catch (error) {
+    return error;
+  }
 };
 
 isValidEmail = (email) => {
@@ -46,18 +50,32 @@ isValidEmail = (email) => {
   return true;
 };
 
-export const logInWithEmailAndPassword = (email, password) => {
+export const isSignedIn = () => {
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      //do your logged in user crap here
+      console.log("Logged in ", user);
+    } else {
+      console.log("Logged out");
+    }
+  });
+};
+
+export const logInWithEmailAndPassword = async (email, password) => {
   // verify the user's email
   if (!isValidEmail("email.example.com")) {
     throw "Wrong email format";
   }
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      return userCredential;
-    })
-    .catch((error) => {
-      return error;
-    });
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  } catch (error) {
+    return error;
+  }
 };
 
 /*
