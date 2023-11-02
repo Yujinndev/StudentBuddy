@@ -60,6 +60,7 @@ export const logInWithEmailAndPassword = (email, password) => {
     });
 };
 
+/*
 export const signInWithGoogle = () => {
   signInWithPopup(auth, googleProvider)
     .then((result) => {
@@ -106,3 +107,4 @@ export const getUserCredentialFacebook = () => {
       return error;
     });
 };
+*/
