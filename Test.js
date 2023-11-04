@@ -7,7 +7,11 @@ import {
   editNote,
   getNotes,
 } from "./src/utils/NotesFirebase";
-import { isSignedIn, signIn } from "./src/utils/AuthenticationFirebase";
+import {
+  isSignedIn,
+  logInWithEmailAndPassword,
+  signIn,
+} from "./src/utils/AuthenticationFirebase";
 
 export default function Test() {
   return (
@@ -24,11 +28,8 @@ export default function Test() {
             //     console.log(error);
             //   });
             try {
-              const result = await signIn(
+              const result = await logInWithEmailAndPassword(
                 "Example@example.com.ph",
-                "leo",
-                "any",
-                "any",
                 "anyany"
               );
               console.log(result.uid);
@@ -41,7 +42,7 @@ export default function Test() {
           title="Test sign"
           onPress={() => {
             try {
-              isSignedIn();
+              console.log(isSignedIn());
             } catch (error) {
               console.log(error);
             }

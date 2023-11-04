@@ -83,7 +83,7 @@ export const isSignedIn = () => {
 
 export const logInWithEmailAndPassword = async (email, password) => {
   // verify the user's email
-  if (!isValidEmail("email.example.com")) {
+  if (!isValidEmail(email)) {
     throw "Wrong email format";
   }
   try {
@@ -94,7 +94,7 @@ export const logInWithEmailAndPassword = async (email, password) => {
     );
     return userCredential.user;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
