@@ -19,12 +19,22 @@ const auth = initializeAuth(FIREBASE_APP, {
 });
 const db = getFirestore(FIREBASE_APP);
 
+// to save user's credential locally when he signin or login
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     AsyncStorage.setItem("user", JSON.stringify(user));
   }
 });
 
+/**
+ * Create user account
+ * @param {String} email - the email of the user
+ * @param {String} firstname - the first name of the user
+ * @param {String} lastname - the last name of the user
+ * @param {String} school - the school or organization that the user is in
+ * @param {String} password - the password for the user's account
+ * @returns the user information is JSON format
+ */
 export const signIn = async (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
   if (!isValidEmail(email)) {
@@ -47,22 +57,6 @@ export const signIn = async (email, firstname, lastname, school, password) => {
   } catch (error) {
     throw error;
   }
-  // return createUserWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     const user = userCredential.user;
-  //     const docRef = setDoc(doc(db, "users", user.uid), {
-  //       email: email,
-  //       firstname: firstname,
-  //       lastname: lastname,
-  //       school: school,
-  //     });
-  //     console.log("wtf2");
-  //     AsyncStorage.setItem("user", JSON.stringify(user));
-  //     return user;
-  //   })
-  //   .catch((error) => {
-  //     return error;
-  //   });
 };
 
 isValidEmail = (email) => {
@@ -73,6 +67,10 @@ isValidEmail = (email) => {
   return true;
 };
 
+/**
+ * Check if the user is already logged in
+ * @returns true if the user is logged in otherwise false
+ */
 export const isSignedIn = async () => {
   const user = await AsyncStorage.getItem("user");
   if (user) {
@@ -82,10 +80,21 @@ export const isSignedIn = async () => {
   }
 };
 
+/**
+ * Get the current logged in user's credential
+ * @returns String - the user's credential in JSON format; can be parse using
+ * the JSON.parse()
+ */
 export const getUser = async () => {
   return await AsyncStorage.getItem("user");
 };
 
+/**
+ * Log in the user using email and password
+ * @param {String} email - the email of the user
+ * @param {String} password - the password of the user
+ * @returns String - user's credential
+ */
 export const logInWithEmailAndPassword = async (email, password) => {
   // verify the user's email
   if (!isValidEmail(email)) {
@@ -103,6 +112,9 @@ export const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
+/**
+ * To sign out the user
+ */
 export const signOutOfEmailAndPassword = async () => {
   try {
     await AsyncStorage.removeItem("user");
