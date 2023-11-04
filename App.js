@@ -41,9 +41,5 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
-  return (
-    <>
-      <Test />
-    </>
-  );
+  return isLoggedin ? <AuthNavigation /> : <GuestNavigation />;
 }
