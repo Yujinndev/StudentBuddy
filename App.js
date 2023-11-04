@@ -25,12 +25,15 @@ export default function App() {
     prepare();
   }, []);
 
-  useEffect(() => {
-    if (isSignedIn) {
-      setIsLoggedIn(true);
-      console.log("naka log in");
-    }
-  }, []);
+  // to check if user is already logged in from the previous usage of the app
+  // useEffect(() => {
+  //   async function check() {
+  //     if (await isSignedIn()) {
+  //       setIsLoggedIn(true);
+  //     }
+  //   }
+  //   check();
+  // }, []);
 
   if (!fontsLoaded) {
     return undefined;

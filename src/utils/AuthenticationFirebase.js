@@ -5,6 +5,7 @@ import {
   getReactNativePersistence,
   initializeAuth,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import AsyncStorage, {
@@ -72,13 +73,17 @@ isValidEmail = (email) => {
   return true;
 };
 
-export const isSignedIn = () => {
-  const user = AsyncStorage.getItem("user");
+export const isSignedIn = async () => {
+  const user = await AsyncStorage.getItem("user");
   if (user) {
     return true;
   } else {
     return false;
   }
+};
+
+export const getUser = async () => {
+  return await AsyncStorage.getItem("user");
 };
 
 export const logInWithEmailAndPassword = async (email, password) => {
@@ -95,6 +100,15 @@ export const logInWithEmailAndPassword = async (email, password) => {
     return userCredential.user;
   } catch (error) {
     throw error;
+  }
+};
+
+export const signOutOfEmailAndPassword = async () => {
+  try {
+    await AsyncStorage.removeItem("user");
+    await signOut(auth);
+  } catch (error) {
+    console.log(error);
   }
 };
 
