@@ -1,25 +1,35 @@
-import React, { useEffect, useState } from 'react';  
-import { useFonts } from 'expo-font'; 
-import * as SplashScreen from 'expo-splash-screen';
-import AuthNavigation from './src/navigation/AuthNavigation';
-import GuestNavigation from './src/navigation/GuestNavigation';
+import React, { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import AuthNavigation from "./src/navigation/AuthNavigation";
+import GuestNavigation from "./src/navigation/GuestNavigation";
+import { isSignedIn } from "./src/utils/AuthenticationFirebase";
 
-export default function App() { 
+import Test from "./Test";
+
+export default function App() {
   const [fontsLoaded] = useFonts({
-    "Montserrat": require("./src/assets/fonts/Montserrat-Regular.ttf"),
-    "Inter": require("./src/assets/fonts/Inter.ttf"),
-    "Lora": require("./src/assets/fonts/Lora.ttf"),
-    "Poppins": require("./src/assets/fonts/Poppins-Bold.ttf"),
-    'MaterialIcons': require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf'),
+    Montserrat: require("./src/assets/fonts/Montserrat-Regular.ttf"),
+    Inter: require("./src/assets/fonts/Inter.ttf"),
+    Lora: require("./src/assets/fonts/Lora.ttf"),
+    Poppins: require("./src/assets/fonts/Poppins-Bold.ttf"),
+    MaterialIcons: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf"),
   });
 
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [isLoggedin, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     async function prepare() {
       await SplashScreen.preventAutoHideAsync();
     }
     prepare();
+  }, []);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      setIsLoggedIn(true);
+      console.log("naka log in");
+    }
   }, []);
 
   if (!fontsLoaded) {
@@ -29,7 +39,8 @@ export default function App() {
   }
 
   return (
-    isLoggedin ? <AuthNavigation /> : <GuestNavigation />
+    <>
+      <Test />
+    </>
   );
-  
 }

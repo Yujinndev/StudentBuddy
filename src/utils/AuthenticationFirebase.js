@@ -7,7 +7,9 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
-import { ReactNativeAsyncStorage } from "@react-native-async-storage/async-storage";
+import AsyncStorage, {
+  ReactNativeAsyncStorage,
+} from "@react-native-async-storage/async-storage";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
@@ -16,12 +18,17 @@ const auth = initializeAuth(FIREBASE_APP, {
 });
 const db = getFirestore(FIREBASE_APP);
 
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    AsyncStorage.setItem("user", JSON.stringify(user));
+  }
+});
+
 export const signIn = async (email, firstname, lastname, school, password) => {
   // verify if the user's email and password is valid
   if (!isValidEmail(email)) {
     throw "Wrong email format";
   }
-  console.log("wtf");
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -29,17 +36,32 @@ export const signIn = async (email, firstname, lastname, school, password) => {
       password
     );
     const user = userCredential.user;
-    const docRef = setDoc(doc(db, user.uid), {
+    const docRef = await setDoc(doc(db, "users", user.uid), {
       email: email,
       firstname: firstname,
       lastname: lastname,
       school: school,
     });
-    console.log("wtf2");
     return user;
   } catch (error) {
-    return error;
+    throw error;
   }
+  // return createUserWithEmailAndPassword(auth, email, password)
+  //   .then((userCredential) => {
+  //     const user = userCredential.user;
+  //     const docRef = setDoc(doc(db, "users", user.uid), {
+  //       email: email,
+  //       firstname: firstname,
+  //       lastname: lastname,
+  //       school: school,
+  //     });
+  //     console.log("wtf2");
+  //     AsyncStorage.setItem("user", JSON.stringify(user));
+  //     return user;
+  //   })
+  //   .catch((error) => {
+  //     return error;
+  //   });
 };
 
 isValidEmail = (email) => {
@@ -51,14 +73,12 @@ isValidEmail = (email) => {
 };
 
 export const isSignedIn = () => {
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      //do your logged in user crap here
-      console.log("Logged in ", user);
-    } else {
-      console.log("Logged out");
-    }
-  });
+  const user = AsyncStorage.getItem("user");
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 export const logInWithEmailAndPassword = async (email, password) => {

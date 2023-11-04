@@ -15,15 +15,23 @@ export default function Test() {
       <SafeAreaView>
         <Button
           title="Test Create"
-          onPress={() => {
+          onPress={async () => {
+            // signIn("Example@example.com", "any", "any", "any", "anyany")
+            //   .then((val) => {
+            //     console.log(val);
+            //   })
+            //   .catch((error) => {
+            //     console.log(error);
+            //   });
             try {
-              const res = signIn(
-                "Example@example.com",
+              const result = await signIn(
+                "Example@example.com.ph",
+                "leo",
                 "any",
                 "any",
-                "any",
-                "any"
+                "anyany"
               );
+              console.log(result.uid);
             } catch (error) {
               console.log(error);
             }
