@@ -3,9 +3,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import GuestNavigation from "./src/navigation/GuestNavigation";
-import { isSignedIn } from "./src/utils/AuthenticationFirebase";
-
-import Test from "./Test";
+import { auth, isSignedIn } from "./src/utils/AuthenticationFirebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -13,33 +12,36 @@ export default function App() {
     Inter: require("./src/assets/fonts/Inter.ttf"),
     Lora: require("./src/assets/fonts/Lora.ttf"),
     Poppins: require("./src/assets/fonts/Poppins-Bold.ttf"),
+    Lilita: require("./src/assets/fonts/LilitaOne-Regular.ttf"),
+    PaytoneOne: require("./src/assets/fonts/PaytoneOne-Regular.ttf"),
     MaterialIcons: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf"),
   });
 
-  const [isLoggedin, setIsLoggedIn] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     async function prepare() {
       await SplashScreen.preventAutoHideAsync();
     }
-    prepare();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuth(!!user); // Update isAuth based on the presence of user
+      SplashScreen.hideAsync();
+    });
+
+    async function initializeApp() {
+      await prepare();
+      SplashScreen.hideAsync();
+    }
+
+    initializeApp();
+
+    return () => unsubscribe(); // Cleanup the subscription when the component unmounts
   }, []);
 
-  // to check if user is already logged in from the previous usage of the app
-  // useEffect(() => {
-  //   async function check() {
-  //     if (await isSignedIn()) {
-  //       setIsLoggedIn(true);
-  //     }
-  //   }
-  //   check();
-  // }, []);
-
   if (!fontsLoaded) {
-    return undefined;
-  } else {
-    SplashScreen.hideAsync();
+    return null;
   }
 
-  return isLoggedin ? <AuthNavigation /> : <GuestNavigation />;
+  return isAuth ? <AuthNavigation /> : <GuestNavigation />;
 }

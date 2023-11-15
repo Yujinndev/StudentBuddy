@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
 
 /* COMPONENTS */
-import Form from '../../components/template/Form';
+import AuthForm from '../../components/template/AuthForm';
 import Pagination from '../../components/atom/Pagination';
 import ButtonAtom from '../../components/atom/ButtonAtom';
 import DividerLine from '../../components/atom/DividerLine';
@@ -16,9 +16,9 @@ export default function Register() {
   const navigation = useNavigation();
 
   const inputFields = [
-    { id: 'email', placeholder: 'Email', value: '', secureTextEntry: false },
     { id: 'firstName', placeholder: 'First Name', value: '', secureTextEntry: false },
     { id: 'lastName', placeholder: 'Last Name', value: '', secureTextEntry: false },
+    { id: 'email', placeholder: 'Email', value: '', secureTextEntry: false },
     { id: 'school', placeholder: 'School/Organization', value: '', secureTextEntry: false },
     { id: 'password', placeholder: 'Password', value: '', secureTextEntry: true },
   ];
@@ -36,7 +36,7 @@ export default function Register() {
         <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: -10 } ]}>Create your account ...</Text>
 
         <View style={ Styles.form }>
-          <Form inputFields={ inputFields } onSubmit={ 'Register' } />
+          <AuthForm inputFields={ inputFields } onSubmit={ 'Register' } />
         </View>
 
         <DividerLine />
