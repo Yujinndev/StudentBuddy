@@ -1,27 +1,29 @@
-import React from 'react';
-import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text } from 'react-native';
-import { AppBar, IconButton } from "@react-native-material/core";
 import { FontAwesome } from '@expo/vector-icons';
 
 import Styles from '../../theme/Styles';
 import Colors from '../../theme/Colors';
+import Appbar from '../../components/atom/Appbar';
+import { getUser } from '../../utils/AuthenticationFirebase';
 
 export default function Dashboard() {
+
+  // const[user, setUser] = useState();
+
+  // useEffect(() => {
+  //   async function getUserInfo() {
+  //     setUser(JSON.parse(await getUser()));
+  //   }
+
+  //   getUserInfo();
+  // });
+
+  const name = 'Mark'
+
   return (
     <SafeAreaView>
-      <StatusBar style="auto" />
-      <AppBar 
-        color="white"
-        title="Dashboard" 
-        contentContainerStyle={[{ marginTop: 20 }, Styles.center ]}
-        titleStyle= {[ Styles.heading, Styles.textGray ]}
-        style={ Styles.appbar }
-        trailing={
-          <IconButton icon={ <FontAwesome name="user-circle-o" size={25} color={Colors.gray} /> } />
-        }
-      />
-
+      <Appbar title={`Hi, ${name}!`} />
 
       <View style={ Styles.container }>
         

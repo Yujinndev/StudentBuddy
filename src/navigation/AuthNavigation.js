@@ -18,7 +18,7 @@ const getWidth = () => (Metrics.screenWidth - 80) / 5;
 
 export default function AuthNavigation() {
   const Tab = createBottomTabNavigator();
-  const tabOffsetValue = useRef(new Animated.Value(0)).current;
+  // const tabOffsetValue = useRef(new Animated.Value(0)).current;
 
   return (
     <NavigationContainer>
@@ -76,7 +76,7 @@ export default function AuthNavigation() {
         <Tab.Screen name="Buddy" component={Buddy} />
       </Tab.Navigator>
 
-      <Animated.View style={{
+      {/* <Animated.View style={{
         width: getWidth() - 20,
         height: 2,
         backgroundColor: Colors.primary,
@@ -90,7 +90,7 @@ export default function AuthNavigation() {
         ]
       }}>
 
-      </Animated.View>
+      </Animated.View> */}
     </NavigationContainer>
   );
 }

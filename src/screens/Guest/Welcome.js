@@ -26,11 +26,11 @@ export default function Welcome() {
           style={ Styles.box } 
           sharedTransitionTag="tag"
         >
-          <Text style={[ Styles.heading, Styles.textLight ]}>Simplifying your Academic Life</Text>
-          <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: 10 }]}>We make it easy to take down your Notes & Lessons, manage your academic tasks, and financial Funds. Interact with your friends and your school buddies!</Text>
+          <Text style={[ Styles.heading, Styles.textLight ]}>Empowering Students, Building Futures</Text>
+          <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: 15 }]}>We make it easy to take down your Notes & Lessons, manage your academic tasks, and financial Funds. Interact with your friends and your school buddies!</Text>
 
           <TouchableOpacity onPress={() => navigation.push('Register')}>
-            <View style={[ Styles.btn, Styles.center, { width: 150 }]}>
+            <View style={[ Styles.btn, Styles.center, { width: 150, marginTop: 10 }]}>
               <Text style={ Styles.btnTitle }>Get Started</Text>
               <MaterialIcons name='arrow-right-alt' size={20} color='black' />
             </View>

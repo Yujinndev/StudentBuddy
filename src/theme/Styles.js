@@ -13,13 +13,14 @@ export default StyleSheet.create({
         color: Colors.black
     },
 
-    textGray: {
-        color: Colors.gray
+    heading: {
+        fontSize: Fonts.font24,
+        fontFamily: 'PaytoneOne',
     },
 
-    heading: {
+    headingTitle: {
         fontSize: Fonts.font28,
-        fontFamily: 'Poppins',
+        fontFamily: 'Lilita',
     },
 
     subheading: {
@@ -78,8 +79,15 @@ export default StyleSheet.create({
         backgroundColor: Colors.white,
     },
     
+    appbarContainer: {
+        marginTop: 20, 
+        borderBottomWidth: 1, 
+        borderBottomColor: '#F2F2F2',
+        height: '100px'
+    },
+
     welcomeImg: {
-        height: (Metrics.screenHeight - 500)
+        height: (Metrics.screenHeight - 420)
     },
 
     authImg: {
@@ -119,4 +127,10 @@ export default StyleSheet.create({
         color: '#FAF9F6'
     },
 
+    errorText: {
+        color: Colors.error, 
+        marginHorizontal: 7,
+        marginTop: -8, 
+        fontFamily: 'Lilita',
+    }
 });

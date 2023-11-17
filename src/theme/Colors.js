@@ -6,5 +6,6 @@ export default {
     subSecondary: "#95877A",
     white: "#FAF9F6",
     black: "#000000",
-    gray: "#36454F",
+    gray: "#818589",
+    error: "#710C04",
 }

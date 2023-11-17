@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
 
 /* COMPONENTS */
-import Form from '../../components/template/Form';
+import AuthForm from '../../components/template/AuthForm';
 import Pagination from '../../components/atom/Pagination';
 import ButtonAtom from '../../components/atom/ButtonAtom';
 import DividerLine from '../../components/atom/DividerLine';
@@ -23,7 +23,7 @@ export default function Login() {
   return (
     <SafeAreaView style={ Styles.center }>
       <StatusBar style="auto" />
-        <Animated.View style={{ height: 350 }} sharedTransitionTag="img">
+        <Animated.View style={{ height: 400 }} sharedTransitionTag="img">
           <Image 
             style={ Styles.welcomeImg }
             source={require('../../assets/images/bg.png')}
@@ -37,7 +37,7 @@ export default function Login() {
           <Text style={[ Styles.paragraph, Styles.textLight, { marginVertical: -10 } ]}>Enter your account details ...</Text>
 
           <View style={ Styles.form }>
-            <Form inputFields={ inputFields } onSubmit={ 'Login' } />
+            <AuthForm inputFields={ inputFields } onSubmit={ 'Login' } />
           </View>
           
           <DividerLine />

@@ -17,7 +17,7 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
-const auth = initializeAuth(FIREBASE_APP, {
+export const auth = initializeAuth(FIREBASE_APP, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 const db = getFirestore(FIREBASE_APP);
