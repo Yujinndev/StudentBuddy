@@ -131,6 +131,10 @@ export const signOutOfEmailAndPassword = async () => {
   }
 };
 
+/**
+ * Create a new account with google account
+ * @returns user credentials
+ */
 export async function createAccountWithGoogle() {
   try {
     console.log("gologolo");
@@ -151,6 +155,10 @@ export async function createAccountWithGoogle() {
   }
 }
 
+/**
+ * Log in using the google acount
+ * @returns user credentials
+ */
 export async function loginWithGoogle() {
   try {
     const userCredential = await GoogleSignin.signIn();
@@ -164,6 +172,9 @@ export async function loginWithGoogle() {
   }
 }
 
+/**
+ * Sign out the logged in google account
+ */
 export async function signOutGoogle() {
   await GoogleSignin.signOut();
   await AsyncStorage.removeItem("user");
