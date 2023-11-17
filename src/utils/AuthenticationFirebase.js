@@ -151,6 +151,19 @@ export async function createAccountWithGoogle() {
   }
 }
 
+export async function loginWithGoogle() {
+  try {
+    const userCredential = await GoogleSignin.signIn();
+    const googleCredential = GoogleAuthProvider.credential(
+      userCredential.idToken
+    );
+    const user = await signInWithCredential(auth, googleCredential);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function signOutGoogle() {
   await GoogleSignin.signOut();
   await AsyncStorage.removeItem("user");
