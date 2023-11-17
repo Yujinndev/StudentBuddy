@@ -1,0 +1,42 @@
+{
+    "_tokenResponse": {
+        "displayName": "x",
+        "email": "x@gmail.com",
+        "emailVerified": true,
+        "expiresIn": "3600",
+        "federatedId": "https://accounts.google.com/118207340770429402876",
+        "firstName": "x",
+        "fullName": "x",
+        "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ0ZmJkZTdhZGY0ZTU3YWYxZWE4MzAzNmJmZjdkMzUxNTk3ZTMzNWEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoibmFuYSBsYWxhIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pXc0otNVprQmlscUpNd0NOTm5GQmRjbk12NWFsVWVRQ2h3Wmt2M2l4Zj1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9zdHVkZW50LWJ1ZGR5LTU0YTkzIiwiYXVkIjoic3R1ZGVudC1idWRkeS01NGE5MyIsImF1dGhfdGltZSI6MTcwMDE4MjM5MSwidXNlcl9pZCI6Ikcwc1ZVb2pidHdkdzhJdEtDSWg4MnppcnRiWDIiLCJzdWIiOiJHMHNWVW9qYnR3ZHc4SXRLQ0loODJ6aXJ0YlgyIiwiaWF0IjoxNzAwMTgyMzkxLCJleHAiOjE3MDAxODU5OTEsImVtYWlsIjoibmFsYTE4MzQ5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE4MjA3MzQwNzcwNDI5NDAyODc2Il0sImVtYWlsIjpbIm5hbGExODM0OUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.rqzqYmzyKMl0nFR9r_Iu0SW-cjLcpEGHqRxmLNgYe4qLbTN8TKwt5_WyeaHfEi935m1AEkngT6V5MTRznDaoV3sZYQnrMx_bYHQWt6eQJp9iXzU9QDZDcq8D_QrLO8RrpZa3CVbEcOgXzWDWw8df5haD8pjIvw2Vydb8OgF_4hs0KsuJ2IhvW4_cdLjTwHnHuJAkXqD8xJoZtvh-jM3WBxnHPK-jx6ZL0WTQimWsFP1VZV-SBFRrADZGOv679arFhEhdgr3n1XiKupJ_vjq75d7HuDBGm8dft5A8roEcQHNHkhGEod0ngnUuTAcD6lYl0pw8Ik3xUx3y17ETf4BxYw",
+        "isNewUser": true,
+        "kind": "identitytoolkit#VerifyAssertionResponse",
+        "lastName": "x",
+        "localId": "G0sVUojbtwdw8ItKCIh82zirtbX2",
+        "oauthIdToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjViMzcwNjk2MGUzZTYwMDI0YTI2NTVlNzhjZmE2M2Y4N2M5N2QzMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI1MTU4MDQxNTA2NTYtcGptMWRrdHE1amVrZnMxcGV2cWRzcDd1cGM0Z3VzazUuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI1MTU4MDQxNTA2NTYtb3BodG9iZ3QwOTBsZ3Y4am5icHA2ZmNrNWUxdG43MG0uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTgyMDczNDA3NzA0Mjk0MDI4NzYiLCJlbWFpbCI6Im5hbGExODM0OUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6Im5hbmEgbGFsYSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKV3NKLTVaa0JpbHFKTXdDTk5uRkJkY25NdjVhbFVlUUNod1prdjNpeGY9czk2LWMiLCJnaXZlbl9uYW1lIjoibmFuYSIsImZhbWlseV9uYW1lIjoibGFsYSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNzAwMTgxODUxLCJleHAiOjE3MDAxODU0NTF9.0vp5p4-bOI8K4vCOctmRsMvgVgg6rclI6pL9Mbfcx0wuONPkrk0O7E0or7PHCw65CcW_514hR1u2yEbKjYhyj0PfWI7aOfUmnp4F1YRXtpn4Hc4lIzEM0CYj_LNL9ZF-0uOA9jQi7tWOo1fMT6Q7IZA8Iy9CJCUQoGsxEahVpmlId1yv65hWtJhhW5Wl9X6FySaHVPphiiePMZt2kgI5boB0_kyFrKE5egUh2gKyNj5H_a8ffSRDChDnLk9YjZ2BODqzluQJ4hN-Vd8kpapdE1sn4ds-nzYbiZECtbUtVgavpNi3hEAaOyDTorQtNqMjNsvXlfhCCzpImHGGRxCqtA",
+        "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJWsJ-5ZkBilqJMwCNNnFBdcnMv5alUeQChwZkv3ixf=s96-c",
+        "providerId": "google.com",
+        "rawUserInfo": "{\"iss\":\"https://accounts.google.com\",\"azp\":\"515804150656-pjm1dktq5jekfs1pevqdsp7upc4gusk5.apps.googleusercontent.com\",\"aud\":\"515804150656-ophtobgt090lgv8jnbpp6fck5e1tn70m.apps.googleusercontent.com\",\"sub\":\"118207340770429402876\",\"email\":\"nala18349@gmail.com\",\"email_verified\":true,\"name\":\"nana lala\",\"picture\":\"https://lh3.googleusercontent.com/a/ACg8ocJWsJ-5ZkBilqJMwCNNnFBdcnMv5alUeQChwZkv3ixf=s96-c\",\"given_name\":\"nana\",\"family_name\":\"lala\",\"locale\":\"en\",\"iat\":1700181851,\"exp\":1700185451}",
+        "refreshToken": "AMf-vBxBf5fxvIg0d54sYak56e9lT6uVbhlB-y3m-aMLEo4PteLQGe3sSZR7vDxWQgHNaYgN-IN7b8sAB6X6hK-bNL6v8rivnLiapMngQGV-zV9evGlnnctag6Mxem7JWmxvHc1scjzHv5eGvyodVe2iTm4mTWqv43xzaZWAPDktTPu0ZTmli_cLRw6OzyWoeOc8HGpEY6DsADR68Q6i-HamFOgspFNx2tDvlofLmtgTEuONyho-kuaNIAy07jnnQ7drUOfO7Po9G0FW9tyN_S7NNlbW-5_mliuDOgg7qhZ2gWuYmUZ8gnaRgAkMLJc6K4Qi3OsNAR2nI-VgBdJ78vOPXZOz2bcujfyAik6kbIuemoGVt2Zk_3gDIydWzKf3xRSS74SBp63AUyKUJAt8djOutUvtCk5ULgwr12JI4k2sTHQ-G-4fhLY"
+    },
+    "operationType": "signIn",
+    "providerId": "google.com",
+    "user": {
+        "_redirectEventId": undefined,
+        "apiKey": "AIzaSyDf3DQFZFWKqpU1MEgVM5_7JCYHgDQIo8Y",
+        "appName": "[DEFAULT]",
+        "createdAt": "1700182391159",
+        "displayName": "x",
+        "email": "x@gmail.com",
+        "emailVerified": true,
+        "isAnonymous": false,
+        "lastLoginAt": "1700182391159",
+        "phoneNumber": undefined,
+        "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocJWsJ-5ZkBilqJMwCNNnFBdcnMv5alUeQChwZkv3ixf=s96-c",
+        "providerData": [Array
+        ],
+        "stsTokenManager": [Object
+        ],
+        "tenantId": undefined,
+        "uid": "G0sVUojbtwdw8ItKCIh82zirtbX2"
+    }
+}

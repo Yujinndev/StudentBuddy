@@ -139,7 +139,7 @@ export async function createAccountWithGoogle() {
       userCredential.idToken
     );
     const user = await signInWithCredential(auth, googleCredential);
-    const docRef = await setDoc(doc(db, "user", user.user.uid), {
+    const docRef = await setDoc(doc(db, "users", user.user.uid), {
       email: user.user.email,
       firstname: user.user.displayName,
       lastname: "",
