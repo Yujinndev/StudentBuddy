@@ -6,11 +6,14 @@ import {
   initializeAuth,
   onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
+  signInWithCredential,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import AsyncStorage, {
   ReactNativeAsyncStorage,
 } from "@react-native-async-storage/async-storage";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
@@ -18,6 +21,10 @@ const auth = initializeAuth(FIREBASE_APP, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 const db = getFirestore(FIREBASE_APP);
+GoogleSignin.configure({
+  webClientId:
+    "515804150656-ophtobgt090lgv8jnbpp6fck5e1tn70m.apps.googleusercontent.com",
+});
 
 // to save user's credential locally when he signin or login
 onAuthStateChanged(auth, async (user) => {
@@ -124,28 +131,33 @@ export const signOutOfEmailAndPassword = async () => {
   }
 };
 
-/*
-export const signInWithGoogle = () => {
-  signInWithPopup(auth, googleProvider)
-    .then((result) => {
-      const user = result.user;
-      // save the user's credentials to firestore
-      const docRef = setDoc(doc(db, user.uid), {
-        email: user.email,
-        firstname: user.displayName,
-        lastname: "",
-        school: "",
-      });
-      return {
-        credential: GoogleAuthProvider.credentialFromResult(result),
-        user: user,
-      };
-    })
-    .catch((error) => {
-      return error;
+export async function createAccountWithGoogle() {
+  try {
+    console.log("gologolo");
+    const userCredential = await GoogleSignin.signIn();
+    const googleCredential = GoogleAuthProvider.credential(
+      userCredential.idToken
+    );
+    const user = await signInWithCredential(auth, googleCredential);
+    const docRef = await setDoc(doc(db, "user", user.user.uid), {
+      email: user.user.email,
+      firstname: user.user.displayName,
+      lastname: "",
+      school: "",
     });
-};
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
 
+export async function signOutGoogle() {
+  await GoogleSignin.signOut();
+  await AsyncStorage.removeItem("user");
+  await signOut(auth);
+}
+
+/*
 export const signInWithFacebook = () => {
   signInWithRedirect(auth, facebookProvider).catch((error) => {
     return error;

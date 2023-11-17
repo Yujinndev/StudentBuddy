@@ -1,12 +1,28 @@
 {
   "expo": {
     "name": "StudentBuddy",
-    "slug": "StudentBuddy",
+    "slug": "student-buddy",
     "version": "1.0.0",
-    "android":{"softwareKeyboardLayoutMode": "pan"},
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.studentbuddy"
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "96b24424-622b-4343-823f-459819a3939c"
+      }
+    },
+    "owner": "cortezla",
+    "scheme": "student-buddy"
   },
   "name": "StudentBuddy"
 }
