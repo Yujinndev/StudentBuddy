@@ -156,6 +156,11 @@ export const signInWithGoogle = () => {
     });
 };
 */
+
+/**
+ * Create a new account with facebook account
+ * @returns the user credentials
+ */
 export async function createUserWithFacebook() {
   try {
     const result = await LoginManager.logInWithPermissions([
@@ -180,6 +185,10 @@ export async function createUserWithFacebook() {
   }
 }
 
+/**
+ * Log in using the facebook account
+ * @returns user's credentials
+ */
 export async function logInWithFacebook() {
   try {
     const result = LoginManager.logInWithPermissions([
@@ -198,6 +207,9 @@ export async function logInWithFacebook() {
   }
 }
 
+/**
+ * Sign out the logged in facebook account
+ */
 export async function signOutFacebook() {
   LoginManager.logOut();
   await AsyncStorage.removeItem("user");
