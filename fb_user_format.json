@@ -1,0 +1,27 @@
+{
+    "apiKey": "xxxxx",
+    "appName": "[DEFAULT]",
+    "createdAt": "xxxx",
+    "displayName": "John Doe",
+    "email": "xxxx@xxxx.com",
+    "emailVerified": false,
+    "isAnonymous": false,
+    "lastLoginAt": "xxxx",
+    "photoURL": "https://graph.facebook.com/xxxxx/picture",
+    "providerData": [
+        {
+            "displayName": "John Doe",
+            "email": "xxx@xxx.com",
+            "phoneNumber": null,
+            "photoURL": "https://graph.facebook.com/xxxxx/picture",
+            "providerId": "facebook.com",
+            "uid": "xxxx"
+        }
+    ],
+    "stsTokenManager": {
+        "accessToken": "xxxxx",
+        "expirationTime": 1700735799658,
+        "refreshToken": "xxxxx"
+    },
+    "uid": "xxxxxxxx"
+}

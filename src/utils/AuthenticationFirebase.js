@@ -6,11 +6,19 @@ import {
   initializeAuth,
   onAuthStateChanged,
   signOut,
+  FacebookAuthProvider,
+  signInWithCredential,
 } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import AsyncStorage, {
   ReactNativeAsyncStorage,
 } from "@react-native-async-storage/async-storage";
+import {
+  Settings,
+  LoginManager,
+  Profile,
+  AccessToken,
+} from "react-native-fbsdk-next";
 
 import { FIREBASE_APP } from "../../config/firebase_config";
 
@@ -18,6 +26,8 @@ export const auth = initializeAuth(FIREBASE_APP, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 const db = getFirestore(FIREBASE_APP);
+
+Settings.setAppID("869677577935631");
 
 // to save user's credential locally when he signin or login
 onAuthStateChanged(auth, async (user) => {
@@ -145,30 +155,51 @@ export const signInWithGoogle = () => {
       return error;
     });
 };
-
-export const signInWithFacebook = () => {
-  signInWithRedirect(auth, facebookProvider).catch((error) => {
-    return error;
-  });
-};
-
-export const getUserCredentialFacebook = () => {
-  getRedirectResult(auth)
-    .then((result) => {
-      const user = result.user;
-      const docRef = setDoc(doc(db, "users", user.uid), {
-        email: user.email,
-        firstname: user.displayName,
-        lastname: "",
-        school: "",
-      });
-      return {
-        credential: FacebookAuthProvider.credentialFromResult(result),
-        user: user,
-      };
-    })
-    .catch((error) => {
-      return error;
-    });
-};
 */
+export async function createUserWithFacebook() {
+  try {
+    const result = await LoginManager.logInWithPermissions([
+      "public_profile",
+      "email",
+    ]);
+    if (result.isCancelled) {
+      throw "User cancelled creating his account";
+    }
+    const token = await AccessToken.getCurrentAccessToken();
+    const fbCredential = FacebookAuthProvider.credential(token.accessToken);
+    const user = await signInWithCredential(auth, fbCredential);
+    const docRef = await setDoc(doc(db, "users", user.user.uid), {
+      email: user.user.email,
+      firstname: user.user.displayName,
+      lastname: "",
+      school: "",
+    });
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function logInWithFacebook() {
+  try {
+    const result = LoginManager.logInWithPermissions([
+      "public_profile",
+      "email",
+    ]);
+    if (result.isCancelled) {
+      throw "User cancelled the login process";
+    }
+    const token = await AccessToken.getCurrentAccessToken();
+    const fbCredential = FacebookAuthProvider.credential(token.accessToken);
+    const user = await signInWithCredential(auth, fbCredential);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function signOutFacebook() {
+  LoginManager.logOut();
+  await AsyncStorage.removeItem("user");
+  await signOut(auth);
+}
