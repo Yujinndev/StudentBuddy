@@ -8,10 +8,13 @@ import {
   getNotes,
 } from "./src/utils/NotesFirebase";
 import {
+  createUserWithFacebook,
+  getProfile,
   getUser,
   isSignedIn,
   logInWithEmailAndPassword,
   signIn,
+  signOutFacebook,
   signOutOfEmailAndPassword,
 } from "./src/utils/AuthenticationFirebase";
 
@@ -44,7 +47,7 @@ export default function Test() {
           title="Test sign"
           onPress={async () => {
             try {
-              console.log(await isSignedIn());
+              await createUserWithFacebook();
             } catch (error) {
               console.log(error);
             }
@@ -52,9 +55,10 @@ export default function Test() {
         />
         <Button
           title="sign Out"
-          onPress={() => {
+          onPress={async () => {
             try {
-              signOutOfEmailAndPassword();
+              await signOutFacebook();
+              console.log("naka sign out na");
             } catch (error) {
               console.log(error);
             }
@@ -66,8 +70,18 @@ export default function Test() {
             try {
               await getUser().then((val) => {
                 const res = JSON.parse(val);
-                console.log(res.uid);
+                console.log(res);
               });
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+        />
+        <Button
+          title="Get profile"
+          onPress={async () => {
+            try {
+              await getProfile();
             } catch (error) {
               console.log(error);
             }
