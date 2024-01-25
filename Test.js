@@ -13,6 +13,8 @@ import {
   logInWithEmailAndPassword,
   signIn,
   signOutOfEmailAndPassword,
+  createAccountWithGoogle,
+  signOutGoogle,
 } from "./src/utils/AuthenticationFirebase";
 
 export default function Test() {
@@ -43,18 +45,14 @@ export default function Test() {
         <Button
           title="Test sign"
           onPress={async () => {
-            try {
-              console.log(await isSignedIn());
-            } catch (error) {
-              console.log(error);
-            }
+            await signOutGoogle();
           }}
         />
         <Button
           title="sign Out"
           onPress={() => {
             try {
-              signOutOfEmailAndPassword();
+              createAccountWithGoogle();
             } catch (error) {
               console.log(error);
             }
@@ -63,14 +61,7 @@ export default function Test() {
         <Button
           title="Get user"
           onPress={async () => {
-            try {
-              await getUser().then((val) => {
-                const res = JSON.parse(val);
-                console.log(res.uid);
-              });
-            } catch (error) {
-              console.log(error);
-            }
+            console.log("Testing");
           }}
         />
       </SafeAreaView>
